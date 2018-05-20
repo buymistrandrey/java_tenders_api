@@ -41,12 +41,19 @@ public class request {
         String myjson = json.toString();
         writer.write(myjson);
         writer.flush();
+
+        String a = "";
         String line;
         BufferedReader reader = new BufferedReader(new
                 InputStreamReader(conn.getInputStream()));
         while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+//            System.out.println(line);
+            a =line;
         }
+        JSONObject r_json = new JSONObject(a);
+        System.out.println(a);
+        System.out.println(r_json);
+//        System.out.println(r_json.getJSONObject("access"));
         writer.close();
         reader.close();
         return "";
