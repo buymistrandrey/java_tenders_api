@@ -3,6 +3,8 @@ import java.util.*;
 import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -51,9 +53,16 @@ public class request {
             a =line;
         }
         JSONObject r_json = new JSONObject(a);
-        System.out.println(a);
-        System.out.println(r_json);
-//        System.out.println(r_json.getJSONObject("access"));
+        System.out.println(r_json);  // print response json
+
+        JSONArray items = r_json.getJSONObject("data").getJSONArray("items");
+//        System.out.println(items);
+        for ( int item = 0; item <= items.length() - 1; item ++ ) {
+            JSONObject i_json = items.getJSONObject(item);
+            String unit_code = i_json.getJSONObject("unit").get("code").toString();
+//            System.out.println(unit_code);
+        }
+//        System.out.println(data.getJSONArray("items"));
         writer.close();
         reader.close();
         return "";
